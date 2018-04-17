@@ -1,9 +1,10 @@
-package fag.com.br.pizzaria.obj;
+package fag.com.br.pizzaria.obj.Entity;
 
 import com.orm.SugarRecord;
 import com.orm.dsl.Unique;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 
 /**
  * Created by Bruno on 16/04/2018.
@@ -13,6 +14,7 @@ public class Tamanho extends SugarRecord implements Serializable{
     @Unique
     private String cdTamanho;
     private String dsTamanho;
+    private double vlTamanho;
 
     public Tamanho() {
     }
@@ -24,7 +26,7 @@ public class Tamanho extends SugarRecord implements Serializable{
 
     @Override
     public String toString() {
-        return "Tamanho: " + cdTamanho;
+        return "Tamanho: " + cdTamanho + " - Valor: " + NumberFormat.getCurrencyInstance().format(vlTamanho);
     }
 
     public String getCdTamanho() {
@@ -41,5 +43,13 @@ public class Tamanho extends SugarRecord implements Serializable{
 
     public void setDsTamanho(String dsTamanho) {
         this.dsTamanho = dsTamanho;
+    }
+
+    public double getVlTamanho() {
+        return vlTamanho;
+    }
+
+    public void setVlTamanho(double vlTamanho) {
+        this.vlTamanho = vlTamanho;
     }
 }

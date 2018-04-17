@@ -1,4 +1,4 @@
-package fag.com.br.pizzaria.obj;
+package fag.com.br.pizzaria.obj.Entity;
 
 import com.orm.SugarRecord;
 import com.orm.dsl.Table;
@@ -20,10 +20,19 @@ public class PedidoVenda extends SugarRecord implements Serializable{
     private double vlPedido;
     private double psPedido;
     private boolean stCancelado;
+    private Tamanho tamanho;
     private List<ItemPedido> itens;
 
     public List<ItemPedido> getItens() {
         return itens;
+    }
+
+    public Tamanho getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(Tamanho tamanho) {
+        this.tamanho = tamanho;
     }
 
     public void setItens(List<ItemPedido> itens) {
@@ -97,18 +106,4 @@ public class PedidoVenda extends SugarRecord implements Serializable{
         return itens != null ? itens.equals(that.itens) : that.itens == null;
     }
 
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = nrPedido;
-        result = 31 * result + (dtEmissao != null ? dtEmissao.hashCode() : 0);
-        temp = Double.doubleToLongBits(vlPedido);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(psPedido);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (stCancelado ? 1 : 0);
-        result = 31 * result + (itens != null ? itens.hashCode() : 0);
-        return result;
-    }
 }

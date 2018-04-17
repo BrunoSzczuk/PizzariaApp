@@ -1,4 +1,4 @@
-package fag.com.br.pizzaria.obj;
+package fag.com.br.pizzaria.obj.Entity;
 
 import com.orm.SugarRecord;
 import com.orm.dsl.Unique;

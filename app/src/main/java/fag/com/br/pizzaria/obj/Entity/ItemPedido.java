@@ -1,18 +1,15 @@
-package fag.com.br.pizzaria.obj;
+package fag.com.br.pizzaria.obj.Entity;
 
 import com.orm.SugarRecord;
 import com.orm.dsl.MultiUnique;
 
 import java.io.Serializable;
 
-import fag.com.br.pizzaria.obj.PedidoVenda;
-import fag.com.br.pizzaria.obj.Produto;
-
 /**
  * Created by Bruno on 09/04/2018.
  */
 
-@MultiUnique("pedido_venda, produto")
+@MultiUnique("pedidovenda, produto")
 public class ItemPedido extends SugarRecord implements Serializable {
     private PedidoVenda pedidoVenda;
     private double qtProduto;
@@ -61,16 +58,4 @@ public class ItemPedido extends SugarRecord implements Serializable {
         this.produto = produto;
     }
 
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = pedidoVenda != null ? pedidoVenda.hashCode() : 0;
-        temp = Double.doubleToLongBits(qtProduto);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(vlProduto);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (produto != null ? produto.hashCode() : 0);
-        return result;
-    }
 }

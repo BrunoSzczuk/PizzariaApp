@@ -2,9 +2,6 @@ package fag.com.br.pizzaria;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,8 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.orm.SugarContext;
-
-import fag.com.br.pizzaria.obj.Tamanho;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -80,15 +75,14 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_produto) {
             Intent intent = new Intent(this, ProdutoActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_sabor) {
-            Intent intent = new Intent(this, SaborActivity.class);
-            startActivity(intent);
         } else if (id == R.id.nav_tamanho) {
             Intent intent = new Intent(this, TamanhoActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_pedido) {
             Intent intent = new Intent(this, PedidoActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_pedido) {
+
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

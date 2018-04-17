@@ -13,8 +13,6 @@
     <string name="btSalvar">Salvar</string>
     <string name="title_activity_produto">Cadastro de Produto</string>
     <string name="title_activity_">Activity</string>
-    <string name="title_activity_adicional">Cadastro de Adicionais</string>
-    <string name="title_activity_produto_adicional">Vinculo Produto x Adicionais</string>
     <string name="etProduto">Produto</string>
     <string name="btAdicionar">Adicionar</string>
     <string name="tvAdicional">Adicional</string>
@@ -23,7 +21,7 @@
     <string name="etCodigoAdicional">Código Adicional:</string>
     <string name="title_activity_lista_item">Selecione o Adicional</string>
     <string name="etQtProduto">Quantidade:</string>
-    <string name="title_activity_sabor">SaborActivity</string>
+    <string name="title_activity_sabor">Cadastro de Sabores</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -113,8 +111,9 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="title_activity_tamanho">TamanhoActivity</string>
-    <string name="title_activity_pedido">PedidoActivity</string>
+    <string name="title_activity_tamanho">Cadastro de tamanho</string>
+    <string name="title_activity_pedido">Novo Pedido</string>
     <string name="tvPizza">Pizza</string>
     <string name="tvTamanho">Tamanho</string>
+    <string name="title_activity_rel_pizza">Relatório</string>
 </resources>

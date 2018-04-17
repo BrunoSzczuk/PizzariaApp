@@ -1,8 +1,6 @@
 package fag.com.br.pizzaria;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,7 +15,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import fag.com.br.pizzaria.obj.Tamanho;
+import fag.com.br.pizzaria.obj.Entity.Tamanho;
 import fag.com.br.pizzaria.util.Mensagem;
 
 public class TamanhoActivity extends AppCompatActivity {
@@ -36,10 +34,7 @@ public class TamanhoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        etCodigo = findViewById(R.id.etCodigo);
-        etDescricao = findViewById(R.id.etDescricao);
-        btSalvar = findViewById(R.id.btSalvar);
-        lvtamanho = findViewById(R.id.lvLista);
+        findComponents();
 
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +57,13 @@ public class TamanhoActivity extends AppCompatActivity {
             }
         });
         carregaLista();
+    }
+
+    private void findComponents() {
+        etCodigo = findViewById(R.id.etCodigo);
+        etDescricao = findViewById(R.id.etDescricao);
+        btSalvar = findViewById(R.id.btSalvar);
+        lvtamanho = findViewById(R.id.lvLista);
     }
 
     private void exibetamanho(Tamanho tamanho) {

@@ -33,10 +33,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SaborActivity"
-            android:label="@string/title_activity_sabor"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".ProdutoActivity"
             android:label="@string/title_activity_produto"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -47,6 +43,10 @@
         <activity
             android:name=".PedidoActivity"
             android:label="@string/title_activity_pedido"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RelPizzaActivity"
+            android:label="@string/title_activity_rel_pizza"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

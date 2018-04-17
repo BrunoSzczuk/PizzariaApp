@@ -1,12 +1,12 @@
-package fag.com.br.pizzaria.adapter;
+package fag.com.br.pizzaria.obj;
 
-import fag.com.br.pizzaria.obj.Produto;
+import fag.com.br.pizzaria.obj.Entity.Produto;
 
-public class AdapterProdutoSabor {
+public class ProdutoSabor {
     boolean isSelected;
     Produto produto;
 
-    public AdapterProdutoSabor() {
+    public ProdutoSabor() {
     }
 
     public boolean isSelected() {
@@ -25,7 +25,7 @@ public class AdapterProdutoSabor {
         this.produto = produto;
     }
 
-    public AdapterProdutoSabor(boolean isSelected, Produto produto) {
+    public ProdutoSabor(boolean isSelected, Produto produto) {
         this.isSelected = isSelected;
         this.produto = produto;
     }
