@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Bruno on 04/04/2018.
  */
 
-public class Pizza extends SugarRecord implements Serializable{
+public class Produto extends SugarRecord implements Serializable{
 
     @Unique
     private String cdProduto;
@@ -23,6 +23,16 @@ public class Pizza extends SugarRecord implements Serializable{
     private double psBruto;
 
     private double vlProduto;
+
+    private List<ItemPedido> itemPedidoList;
+
+    public List<ItemPedido> getItemPedidoList() {
+        return itemPedidoList;
+    }
+
+    public void setItemPedidoList(List<ItemPedido> itemPedidoList) {
+        this.itemPedidoList = itemPedidoList;
+    }
 
     public double getVlProduto() {
         return vlProduto;
@@ -64,7 +74,7 @@ public class Pizza extends SugarRecord implements Serializable{
         this.psBruto = psBruto;
     }
 
-    public Pizza(String cdProduto, String dsProduto, boolean stAtivo, double psBruto) {
+    public Produto(String cdProduto, String dsProduto, boolean stAtivo, double psBruto) {
 
         this.cdProduto = cdProduto;
         this.dsProduto = dsProduto;
@@ -72,11 +82,11 @@ public class Pizza extends SugarRecord implements Serializable{
         this.psBruto = psBruto;
     }
 
-    public Pizza() {
+    public Produto() {
     }
 
     @Override
     public String toString() {
-        return "Pizza - "+ cdProduto + " - Descrição - " +dsProduto + " - Valor: " + NumberFormat.getCurrencyInstance().format(vlProduto);
+        return "Produto - "+ cdProduto + " - Descrição - " +dsProduto + " - Valor: " + NumberFormat.getCurrencyInstance().format(vlProduto);
     }
 }

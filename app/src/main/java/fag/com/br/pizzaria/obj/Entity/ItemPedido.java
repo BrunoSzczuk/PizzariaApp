@@ -5,16 +5,19 @@ import com.orm.dsl.MultiUnique;
 
 import java.io.Serializable;
 
+import fag.com.br.pizzaria.obj.PedidoVenda;
+import fag.com.br.pizzaria.obj.Produto;
+
 /**
  * Created by Bruno on 09/04/2018.
  */
 
-@MultiUnique("pedido_venda, pizza")
+@MultiUnique("pedido_venda, produto")
 public class ItemPedido extends SugarRecord implements Serializable {
     private PedidoVenda pedidoVenda;
     private double qtProduto;
     private double vlProduto;
-    private Pizza pizza;
+    private Produto produto;
 
     @Override
     public String toString() {
@@ -22,7 +25,7 @@ public class ItemPedido extends SugarRecord implements Serializable {
                 "pedidoVenda=" + pedidoVenda +
                 ", qtProduto=" + qtProduto +
                 ", vlProduto=" + vlProduto +
-                ", pizza=" + pizza +
+                ", produto=" + produto +
                 '}';
     }
 
@@ -50,16 +53,13 @@ public class ItemPedido extends SugarRecord implements Serializable {
         this.vlProduto = vlProduto;
     }
 
-    public Pizza getPizza() {
-        return pizza;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setPizza(Pizza pizza) {
-        this.pizza = pizza;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
-
-
-
 
     @Override
     public int hashCode() {
@@ -70,7 +70,7 @@ public class ItemPedido extends SugarRecord implements Serializable {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(vlProduto);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (pizza != null ? pizza.hashCode() : 0);
+        result = 31 * result + (produto != null ? produto.hashCode() : 0);
         return result;
     }
 }
