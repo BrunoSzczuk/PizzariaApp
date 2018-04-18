@@ -57,6 +57,7 @@ public class ProdutoActivity extends AppCompatActivity {
                     produto.save();
                     Mensagem.ExibirMensagem(ProdutoActivity.this,"Salvo com sucesso",1);
                     produto = new Produto();
+                    exibeProduto(produto);
                     carregaLista();
                 }
             }

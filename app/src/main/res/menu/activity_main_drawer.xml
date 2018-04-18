@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Cadastro de Produto" />
         <item
-            android:id="@+id/nav_sabor"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Cadastro de Sabor" />
-        <item
             android:id="@+id/nav_tamanho"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Cadastro de Tamanho" />
@@ -20,6 +16,11 @@
             android:id="@+id/nav_pedido"
             android:icon="@drawable/ic_menu_manage"
             android:title="Iniciar um novo Pedido" />
+        <item
+            android:id="@+id/nav_relatoriotamanho"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Relatório de tamanho" />
+
     </group>
 
     <item android:title="Communicate">

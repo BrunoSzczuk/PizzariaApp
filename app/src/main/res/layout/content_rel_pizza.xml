@@ -7,11 +7,32 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".RelPizzaActivity"
     tools:showIn="@layout/activity_rel_pizza">
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:orientation="vertical">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:id="@+id/spTamanho">
+        </Spinner>
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:choiceMode="none"
+            android:id="@+id/lvLista">
+        </ListView>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:text="@string/btGerar"
+            android:id="@+id/btGerar"/>
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

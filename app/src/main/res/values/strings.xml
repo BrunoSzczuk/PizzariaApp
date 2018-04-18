@@ -116,4 +116,8 @@
     <string name="tvPizza">Pizza</string>
     <string name="tvTamanho">Tamanho</string>
     <string name="title_activity_rel_pizza">Relatório</string>
+    <string name="etValorTamanho">Valor do Tamanho</string>
+    <string name="btGerar">Gerar</string>
+    <string name="tvPedido">Pedido:</string>
+    <string name="tvQtdPedido">Qtd Itens:</string>
 </resources>

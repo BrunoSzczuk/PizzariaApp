@@ -81,12 +81,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_pedido) {
             Intent intent = new Intent(this, PedidoActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_pedido) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_relatoriotamanho) {
+            Intent intent = new Intent(this, RelPizzaActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

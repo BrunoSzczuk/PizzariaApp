@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import fag.com.br.pizzaria.util.Mensagem;
 
 public class TamanhoActivity extends AppCompatActivity {
 
-    EditText etCodigo, etDescricao;
+    EditText etCodigo, etDescricao, etValorTamanho;
     Button btSalvar;
     ArrayAdapter arrayAdapter;
     ListView lvtamanho;
@@ -39,12 +40,23 @@ public class TamanhoActivity extends AppCompatActivity {
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if ( etCodigo.getText().toString() == null){
+                    Mensagem.ExibirMensagem(TamanhoActivity.this,"É necessário informar um código",1);
+                }
+                if (etDescricao.getText().toString() == null){
+                    Mensagem.ExibirMensagem(TamanhoActivity.this,"É ncessário informar uma descrição",1);
+                }
+                if (etValorTamanho.getText().toString() == null){
+                    Mensagem.ExibirMensagem(TamanhoActivity.this,"É necessário informar um valor",1);
+                }
                 if (tamanho == null) tamanho = new Tamanho();
                 tamanho.setCdTamanho(etCodigo.getText().toString());
                 tamanho.setDsTamanho(etDescricao.getText().toString());
+                tamanho.setVlTamanho(Double.parseDouble(etValorTamanho.getText().toString()));
                 tamanho.save();
                 Mensagem.ExibirMensagem(TamanhoActivity.this,"Salvo com sucesso",1);
                 tamanho = new Tamanho();
+                exibetamanho(tamanho);
                 carregaLista();
             }
         });
@@ -61,6 +73,7 @@ public class TamanhoActivity extends AppCompatActivity {
 
     private void findComponents() {
         etCodigo = findViewById(R.id.etCodigo);
+        etValorTamanho = findViewById(R.id.etVlTamanho);
         etDescricao = findViewById(R.id.etDescricao);
         btSalvar = findViewById(R.id.btSalvar);
         lvtamanho = findViewById(R.id.lvLista);

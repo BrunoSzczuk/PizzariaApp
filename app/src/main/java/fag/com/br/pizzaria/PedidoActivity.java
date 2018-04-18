@@ -30,7 +30,7 @@ public class PedidoActivity extends AppCompatActivity {
     ArrayAdapter adapterTamanho;
     List<Tamanho> tamanhoList = Tamanho.listAll(Tamanho.class);
     Spinner spTamanho;
-
+    PedidoVenda pedidoVenda = new PedidoVenda();
     ListView lvProduto;
     AdapterProdutoSabor adapterProduto;
     List<ProdutoSabor> saborList = new ArrayList<>();
@@ -53,7 +53,6 @@ public class PedidoActivity extends AppCompatActivity {
                 if (produtosSelecionados.size() == 0){
                     Mensagem.ExibirMensagem (PedidoActivity.this, "É necessário selecionar ao menos um sabor",1);
                 }else {
-                    PedidoVenda pedidoVenda = new PedidoVenda();
                     PedidoVenda outropedido = PedidoVenda.last(PedidoVenda.class);
                     List<ItemPedido> itens = new ArrayList<>();
                     if (outropedido == null){
@@ -64,7 +63,7 @@ public class PedidoActivity extends AppCompatActivity {
                     pedidoVenda.setNrPedido(outropedido.getNrPedido() +1);
                     pedidoVenda.setStCancelado(false);
                     pedidoVenda.setTamanho((Tamanho)spTamanho.getSelectedItem());
-                    float peso = 0, valor = 0;
+                    double peso = 0, valor = pedidoVenda.getTamanho().getVlTamanho();
 
                     for (Produto p : produtosSelecionados){
                         ItemPedido itemPedido = new ItemPedido();
@@ -81,10 +80,12 @@ public class PedidoActivity extends AppCompatActivity {
                     pedidoVenda.setPsPedido(peso);
                     pedidoVenda.setItens(itens);
                     pedidoVenda.save();
+                    for (ItemPedido i : pedidoVenda.getItens()){
+                        i.save();
+                    }
                     Mensagem.ExibirMensagem (PedidoActivity.this, "Pedido salvo com sucesso",1);
-
+                    pedidoVenda = new PedidoVenda();
                 }
-                //Mensagem.ExibirMensagem (PedidoActivity.this, .toString(),1);
             }
         });
         carregaLista();

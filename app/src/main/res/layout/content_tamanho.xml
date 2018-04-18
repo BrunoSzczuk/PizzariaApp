@@ -27,6 +27,14 @@
             android:layout_marginLeft="@dimen/marginLeft"
             android:hint="@string/etDescricao"
             android:id="@+id/etDescricao"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:hint="@string/etValorTamanho"
+            android:inputType="numberDecimal"
+            android:id="@+id/etVlTamanho"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_gravity="center"

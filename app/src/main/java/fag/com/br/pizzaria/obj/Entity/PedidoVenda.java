@@ -12,7 +12,6 @@ import java.util.List;
  * Created by Bruno on 09/04/2018.
  */
 
-@Table(name = "pedidovenda")
 public class PedidoVenda extends SugarRecord implements Serializable{
     @Unique
     private int nrPedido;
