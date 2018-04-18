@@ -13,12 +13,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:text="@string/tvPedido"/>
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:id="@+id/etNrPedido"/>
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/marginLeft"
@@ -28,12 +30,12 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/marginLeft"
                 android:text="@string/tvQtdPedido"/>
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/etQtdItens"/>
         </LinearLayout>
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/etItens"/>

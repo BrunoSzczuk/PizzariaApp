@@ -120,4 +120,7 @@
     <string name="btGerar">Gerar</string>
     <string name="tvPedido">Pedido:</string>
     <string name="tvQtdPedido">Qtd Itens:</string>
+    <string name="tvNrPedido">Numero do Pedido:</string>
+    <string name="btVoltar">Voltar</string>
+    <string name="btNovo">Novo</string>
 </resources>

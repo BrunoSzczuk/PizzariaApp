@@ -62,7 +62,7 @@ public class RelPizzaActivity extends AppCompatActivity {
         lvPedidos = findViewById(R.id.lvLista);
         btGerar = findViewById(R.id.btGerar);
     }
-    
+
     private void carregaLista(){
         adapterTamanho = new ArrayAdapter(this,R.layout.item_exibicao, tamanhoList);
         spTamanho.setAdapter(adapterTamanho);

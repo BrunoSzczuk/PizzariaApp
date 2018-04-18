@@ -68,6 +68,18 @@
             android:text="@string/btSalvar"
             android:id="@+id/btSalvar"
             android:layout_marginTop="@dimen/marginTop"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btNovo"
+            android:id="@+id/btNovo"
+            android:layout_marginTop="@dimen/marginTop"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btVoltar"
+            android:id="@+id/btVoltar"
+            android:layout_marginTop="@dimen/marginTop"/>
     </LinearLayout>
 
         <ListView

@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ToggleButton;
 
@@ -24,7 +26,7 @@ public class ProdutoActivity extends AppCompatActivity {
     ToggleButton tgAtivo;
     List<Produto> produtoList = new ArrayList<>();
     AdapterProduto adapterProduto;
-    Button btSalvar;
+    Button btSalvar, btVoltar, btNovo;
     Produto produto = new Produto();
     ListView lvProduto;
     @Override
@@ -36,7 +38,11 @@ public class ProdutoActivity extends AppCompatActivity {
 
         findComponents();
 
+        events();
         carregaLista();
+    }
+
+    private void events() {
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +62,7 @@ public class ProdutoActivity extends AppCompatActivity {
                     produto.setStAtivo(tgAtivo.isChecked());
                     produto.save();
                     Mensagem.ExibirMensagem(ProdutoActivity.this,"Salvo com sucesso",1);
-                    produto = new Produto();
-                    exibeProduto(produto);
+                    novo();
                     carregaLista();
                 }
             }
@@ -69,7 +74,18 @@ public class ProdutoActivity extends AppCompatActivity {
                 exibeProduto(produto);
             }
         });
-        carregaLista();
+        btNovo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                novo();
+            }
+        });
+        btVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProdutoActivity.super.onBackPressed();
+            }
+        });
     }
 
     private void findComponents() {
@@ -80,6 +96,9 @@ public class ProdutoActivity extends AppCompatActivity {
         btSalvar = findViewById(R.id.btSalvar);
         tgAtivo = findViewById(R.id.tgAtivo);
         lvProduto = findViewById(R.id.lvProduto);
+        btVoltar = findViewById(R.id.btVoltar);
+        btNovo = findViewById(R.id.btNovo);
+
     }
 
     private void exibeProduto(Produto produto) {
@@ -93,5 +112,24 @@ public class ProdutoActivity extends AppCompatActivity {
         produtoList = Produto.listAll(Produto.class);//Lista com Ordenacao
         adapterProduto = new AdapterProduto(this, produtoList);
         lvProduto.setAdapter(adapterProduto);//Amarro a ListView com o Adapter criado
+        calculaTamanhoAdapater();
+    }
+    private void novo(){
+        produto = new Produto();
+        exibeProduto(produto);
+    }
+    private void calculaTamanhoAdapater(){
+        int totalHeight =0;
+        ListAdapter adapter = lvProduto.getAdapter();
+        int length = adapter.getCount();
+        for (int i =0; i< length; i++){
+            View listView = adapter.getView(i, null, lvProduto);
+            listView.measure(0,0);
+            totalHeight+= listView.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = lvProduto.getLayoutParams();
+        params.height = totalHeight + (lvProduto.getDividerHeight() * (adapter.getCount() -1) +10);
+        lvProduto.setLayoutParams(params);
+        lvProduto.requestLayout();
     }
 }

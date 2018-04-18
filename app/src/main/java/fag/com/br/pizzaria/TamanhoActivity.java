@@ -22,7 +22,7 @@ import fag.com.br.pizzaria.util.Mensagem;
 public class TamanhoActivity extends AppCompatActivity {
 
     EditText etCodigo, etDescricao, etValorTamanho;
-    Button btSalvar;
+    Button btSalvar, btNovo, btVoltar;
     ArrayAdapter arrayAdapter;
     ListView lvtamanho;
     Tamanho tamanho = new Tamanho();
@@ -36,7 +36,11 @@ public class TamanhoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         findComponents();
+        events();
+        carregaLista();
+    }
 
+    private void events() {
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,14 +54,25 @@ public class TamanhoActivity extends AppCompatActivity {
                     Mensagem.ExibirMensagem(TamanhoActivity.this,"É necessário informar um valor",1);
                 }
                 if (tamanho == null) tamanho = new Tamanho();
-                tamanho.setCdTamanho(etCodigo.getText().toString());
+                tamanho.setCdTamanho(etCodigo.getText().toString().toUpperCase());
                 tamanho.setDsTamanho(etDescricao.getText().toString());
                 tamanho.setVlTamanho(Double.parseDouble(etValorTamanho.getText().toString()));
                 tamanho.save();
                 Mensagem.ExibirMensagem(TamanhoActivity.this,"Salvo com sucesso",1);
-                tamanho = new Tamanho();
-                exibetamanho(tamanho);
+                novo();
                 carregaLista();
+            }
+        });
+        btNovo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                novo();
+            }
+        });
+        btVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TamanhoActivity.super.onBackPressed();
             }
         });
 
@@ -68,7 +83,6 @@ public class TamanhoActivity extends AppCompatActivity {
                 exibetamanho(tamanho);
             }
         });
-        carregaLista();
     }
 
     private void findComponents() {
@@ -77,13 +91,20 @@ public class TamanhoActivity extends AppCompatActivity {
         etDescricao = findViewById(R.id.etDescricao);
         btSalvar = findViewById(R.id.btSalvar);
         lvtamanho = findViewById(R.id.lvLista);
+        btVoltar = findViewById(R.id.btVoltar);
+        btNovo = findViewById(R.id.btNovo);
     }
 
     private void exibetamanho(Tamanho tamanho) {
         etDescricao.setText(tamanho.getDsTamanho());
         etCodigo.setText(tamanho.getCdTamanho());
+        etValorTamanho.setText(String.valueOf(tamanho.getVlTamanho()));
     }
 
+    private void novo(){
+        tamanho = new Tamanho();
+        exibetamanho(tamanho);
+    }
     private void carregaLista() {
         tamanhoList = Tamanho.listAll(Tamanho.class);//Lista com Ordenacao
         arrayAdapter = new ArrayAdapter(this,R.layout.item_exibicao, tamanhoList);

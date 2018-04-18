@@ -50,7 +50,7 @@ public class AdapterProduto extends BaseAdapter {
         ((TextView) view.findViewById(R.id.tvCdProduto)).setText(String.valueOf(p.getCdProduto()));
         ((TextView) view.findViewById(R.id.tvDsProduto)).setText(p.getDsProduto().toString());
         ((TextView) view.findViewById(R.id.etVlProduto)).setText(NumberFormat.getCurrencyInstance().format(p.getVlProduto()));
-        ((TextView) view.findViewById(R.id.etPsBruto)).setText(new DecimalFormat("##,#00").format(p.getPsBruto()));
+        ((TextView) view.findViewById(R.id.etPsBruto)).setText(new DecimalFormat("#,##0.00").format(p.getPsBruto()));
         return view;
     }
 

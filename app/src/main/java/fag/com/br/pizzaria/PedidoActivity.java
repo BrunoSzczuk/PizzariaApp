@@ -8,15 +8,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import fag.com.br.pizzaria.adapter.AdapterProduto;
 import fag.com.br.pizzaria.adapter.AdapterProdutoSabor;
 import fag.com.br.pizzaria.obj.Entity.ItemPedido;
 import fag.com.br.pizzaria.obj.Entity.PedidoVenda;
@@ -34,8 +35,9 @@ public class PedidoActivity extends AppCompatActivity {
     ListView lvProduto;
     AdapterProdutoSabor adapterProduto;
     List<ProdutoSabor> saborList = new ArrayList<>();
+    TextView etNrPedido;
 
-    Button btSalvar;
+    Button btSalvar, btVoltar, btNovo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +45,13 @@ public class PedidoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        spTamanho = findViewById(R.id.spTamanho);
-        lvProduto = findViewById(R.id.lvSabores);
-        btSalvar  = findViewById(R.id.btSalvar);
+        findComponents();
+        novo();
+
+        events();
+    }
+
+    private void events() {
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,14 +59,9 @@ public class PedidoActivity extends AppCompatActivity {
                 if (produtosSelecionados.size() == 0){
                     Mensagem.ExibirMensagem (PedidoActivity.this, "É necessário selecionar ao menos um sabor",1);
                 }else {
-                    PedidoVenda outropedido = PedidoVenda.last(PedidoVenda.class);
                     List<ItemPedido> itens = new ArrayList<>();
-                    if (outropedido == null){
-                        outropedido = new PedidoVenda();
-                        outropedido.setNrPedido(0);
-                    }
+
                     pedidoVenda.setDtEmissao(new Date());
-                    pedidoVenda.setNrPedido(outropedido.getNrPedido() +1);
                     pedidoVenda.setStCancelado(false);
                     pedidoVenda.setTamanho((Tamanho)spTamanho.getSelectedItem());
                     double peso = 0, valor = pedidoVenda.getTamanho().getVlTamanho();
@@ -84,22 +85,54 @@ public class PedidoActivity extends AppCompatActivity {
                         i.save();
                     }
                     Mensagem.ExibirMensagem (PedidoActivity.this, "Pedido salvo com sucesso",1);
-                    pedidoVenda = new PedidoVenda();
+                    novo();
+
                 }
             }
         });
+        btNovo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                novo();
+            }
+        });
+        btVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PedidoActivity.super.onBackPressed();
+            }
+        });
+    }
+
+    private void findComponents() {
+        spTamanho = findViewById(R.id.spTamanho);
+        lvProduto = findViewById(R.id.lvSabores);
+        btSalvar  = findViewById(R.id.btSalvar);
+        btNovo = findViewById(R.id.btNovo);
+        btVoltar = findViewById(R.id.btVoltar);
+        etNrPedido = findViewById(R.id.etNrPedido);
+    }
+
+    private void novo() {
+        pedidoVenda = new PedidoVenda();
+        PedidoVenda outropedido = PedidoVenda.last(PedidoVenda.class);
+        if (outropedido == null){
+            outropedido = new PedidoVenda();
+            outropedido.setNrPedido(0);
+        }
+        pedidoVenda.setNrPedido(outropedido.getNrPedido() +1);
         carregaLista();
     }
+
     private void carregaLista() {
         List<Produto> produtos = Produto.listAll(Produto.class);//Lista com Ordenacao;
-        if (saborList.size() == 0) {
-            for (Produto p : produtos) {
+        saborList.clear();
+        for (Produto p : produtos) {
                 saborList.add(new ProdutoSabor(false, p));
-            }
         }
+
         adapterProduto = new AdapterProdutoSabor(this, saborList);
         lvProduto.setAdapter(adapterProduto);//Amarro a ListView com o Adapter criado
-
         lvProduto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -119,6 +152,7 @@ public class PedidoActivity extends AppCompatActivity {
         });
         adapterTamanho = new ArrayAdapter(this,R.layout.item_exibicao, tamanhoList);
         spTamanho.setAdapter(adapterTamanho);
+        etNrPedido.setText(String.valueOf(pedidoVenda.getNrPedido()));
         calculaTamanhoAdapater();
     }
     private void calculaTamanhoAdapater(){
