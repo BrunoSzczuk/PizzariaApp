@@ -88,12 +88,6 @@ gen-external-apklibs
 *~
 *.swp
 
-# Android Patch
-
-# External native build folder generated in Android Studio 2.2 and later
-
-# NDK
-obj/
 
 # IntelliJ IDEA
 *.iws
