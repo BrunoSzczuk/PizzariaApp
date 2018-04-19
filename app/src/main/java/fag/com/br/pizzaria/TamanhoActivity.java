@@ -1,6 +1,8 @@
 package fag.com.br.pizzaria;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,6 +18,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
+import fag.com.br.pizzaria.obj.Entity.Produto;
 import fag.com.br.pizzaria.obj.Entity.Tamanho;
 import fag.com.br.pizzaria.util.Mensagem;
 
@@ -83,6 +86,37 @@ public class TamanhoActivity extends AppCompatActivity {
                 exibetamanho(tamanho);
             }
         });
+        lvtamanho.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                final AlertDialog.Builder alert = new AlertDialog.Builder(TamanhoActivity.this);
+                alert.setTitle("Confirmacao");
+                alert.setIcon(android.R.drawable.ic_delete);
+                alert.setMessage("Deseja Realmente Excluir o Registro?");
+                alert.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deletaProduto((Tamanho) lvtamanho.getItemAtPosition(position));
+                    }
+                });
+                alert.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                alert.show();
+                return true;
+            }
+        });
+    }
+
+    private void deletaProduto(Tamanho tamanho) {
+        tamanho.delete();//Apaga o Registro
+        carregaLista();//Carrega a Lista novamente
+        Mensagem.ExibirMensagem(TamanhoActivity.this, "Apagado com sucesso!", 1);
+
     }
 
     private void findComponents() {

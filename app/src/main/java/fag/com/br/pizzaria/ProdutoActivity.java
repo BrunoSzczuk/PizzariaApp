@@ -1,6 +1,8 @@
 package fag.com.br.pizzaria;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -86,7 +88,38 @@ public class ProdutoActivity extends AppCompatActivity {
                 ProdutoActivity.super.onBackPressed();
             }
         });
+        lvProduto.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                final AlertDialog.Builder alert = new AlertDialog.Builder(ProdutoActivity.this);
+                alert.setTitle("Confirmacao");
+                alert.setIcon(android.R.drawable.ic_delete);
+                alert.setMessage("Deseja Realmente Excluir o Registro?");
+                alert.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deletaProduto((Produto) lvProduto.getItemAtPosition(position));
+                    }
+                });
+                alert.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                alert.show();
+                return true;
+            }
+        });
     }
+
+    private void deletaProduto(Produto produto) {
+        produto.delete();//Apaga o Registro
+        carregaLista();//Carrega a Lista novamente
+        Mensagem.ExibirMensagem(ProdutoActivity.this, "Apagado com sucesso!", 1);
+    }
+
 
     private void findComponents() {
         etCodigo = findViewById(R.id.etCodigo);
